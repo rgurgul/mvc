@@ -1,0 +1,8 @@
+{
+  "name": "mvc",
+  "version": "1.0.0",
+  "devDependencies": {
+    "bootstrap": "latest",
+    "jquery": "latest"
+  }
+}
