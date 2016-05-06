@@ -1,6 +1,6 @@
-var Model = function (storageUrl) {
+var Model = function (ApiUrl) {
     EventTarget.apply(this);
-    this.storageUrl = storageUrl;
+    this.storageUrl = ApiUrl;
     this.items = [];
     this.selectedItem = undefined;
 
@@ -26,17 +26,25 @@ Model.prototype.getItem = function (index) {
 };
 
 Model.prototype.addItem = function (item) {
-    $.post(this.storageUrl, item, function (response) {
-        this.items.push(response);
-        this.fire('itemsChanged');
-    }.bind(this), 'json');
+    $.ajax({
+        type: "POST",
+        url: this.storageUrl,
+        data: JSON.stringify(item),
+        contentType: "application/json",
+        dataType: "json",
+        context: this,
+        success: function (response) {
+            this.items.push(response);
+            this.fire('itemsChanged');
+        }
+    });
 };
 
 Model.prototype.removeItem = function (index) {
     var item = this.items[index];
     $.ajax({
-        url: this.storageUrl,
         type: 'DELETE',
+        url: this.storageUrl,
         data: JSON.stringify(item),
         contentType: "application/json",
         dataType: 'json',
@@ -45,5 +53,5 @@ Model.prototype.removeItem = function (index) {
             this.items.splice(index, 1);
             this.fire('itemsChanged');
         }
-    })
+    });
 };
