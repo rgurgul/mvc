@@ -37,7 +37,8 @@ Model.prototype.removeItem = function (index) {
     $.ajax({
         url: this.storageUrl,
         type: 'DELETE',
-        data: item,
+        data: JSON.stringify(item),
+        contentType: "application/json",
         dataType: 'json',
         context: this,
         success: function () {
