@@ -6,22 +6,20 @@
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css"/>
 </head>
 <body>
-<div class="row container well">
-    <div class="col-xs-4">
-        <select class="form-control list" size="10"></select>
-    </div>
-    <div class="col-xs-1">
-        <button class="btn btn-default btn-block btn-add">+</button>
-        <button class="btn btn-default btn-block btn-delete">-</button>
-    </div>
-    <div class="col-xs-7">
+
+<div class="container">
+    <h3>MY CONTACTS</h3>
+    <div class="well col-lg-7 container-list"></div>
+    <div class="col-lg-5">
         <img src="assets/mvc-process.jpg" width="350">
     </div>
-    <script src="js/EventTarget.js"></script>
-    <script src="js/model.js"></script>
-    <script src="js/view.js"></script>
-    <script src="js/controller.js"></script>
-    <script src="js/main.js"></script>
 </div>
+
+<script src="js/helpers.js"></script>
+<script src="js/model.js"></script>
+<script src="js/view-new-item.js"></script>
+<script src="js/view-list.js"></script>
+<script src="js/controller.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
