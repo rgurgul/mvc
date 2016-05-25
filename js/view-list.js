@@ -1,5 +1,5 @@
 var ViewList = function (model, container) {
-    Helpers.call(this);
+    EventTarget.call(this);
 
     // model
     this.model = model;
@@ -16,7 +16,7 @@ var ViewList = function (model, container) {
     }.bind(this));
 };
 
-ViewList.prototype = Object.create(Helpers.prototype);
+ViewList.prototype = Object.create(EventTarget.prototype);
 
 ViewList.prototype.createUI = function (container) {
     var tpl = '<div class="row">\
@@ -30,7 +30,7 @@ ViewList.prototype.createUI = function (container) {
         </div>\
         </div>';
 
-    var el = this.createEl(tpl, container, 'append');
+    var el = Helpers.createEl(tpl, container, 'append');
 
     return {
         list: el.querySelector('.list'),

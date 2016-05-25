@@ -1,5 +1,5 @@
 function ViewNewItem(container) {
-    Helpers.call(this);
+    EventTarget.call(this);
 
     // UI
     this.controls = this.createUI(container);
@@ -10,7 +10,7 @@ function ViewNewItem(container) {
     }.bind(this));
 }
 
-ViewNewItem.prototype = Object.create(Helpers.prototype);
+ViewNewItem.prototype = Object.create(EventTarget.prototype);
 
 ViewNewItem.prototype.createUI = function (container) {
     var tpl = '<form class="well hidden">\
@@ -19,7 +19,7 @@ ViewNewItem.prototype.createUI = function (container) {
             <button class="btn" type="button">add item</button>\
         </form>';
 
-    this.el = this.createEl(tpl, container, 'prepend');
+    this.el = Helpers.createEl(tpl, container, 'prepend');
 
     return {
         name: this.el.name,

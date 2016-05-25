@@ -1,9 +1,9 @@
 var Model = function (data) {
-    Helpers.apply(this);
+    EventTarget.apply(this);
     this.items = data;
 };
 
-Model.prototype = Object.create(Helpers.prototype);
+Model.prototype = Object.create(EventTarget.prototype);
 
 Model.prototype.getItems = function () {
     return this.items;
