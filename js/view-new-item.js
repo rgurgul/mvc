@@ -4,7 +4,7 @@ function ViewNewItem(container) {
     // UI
     this.createUI(container);
     this.btnAdd.addEventListener('click', function () {
-        var result = new ContactModel(this.name.value, this.phone.value)
+        var result = new ContactModel(this.name.value, this.phone.value);
         result.name && this.fire('addItem', result);
         this.form.classList = 'well hidden';
     }.bind(this));
