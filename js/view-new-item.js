@@ -2,32 +2,23 @@ function ViewNewItem(container) {
     EventTarget.call(this);
 
     // UI
-    this.controls = this.createUI(container);
-    this.controls.btnAdd.addEventListener('click', function () {
-        var result = {name: this.controls.name.value, phone: this.controls.phone.value};
+    this.createUI(container);
+    this.btnAdd.addEventListener('click', function () {
+        var result = new ContactModel(this.name.value, this.phone.value)
         result.name && this.fire('addItem', result);
-        this.el.classList = 'well hidden';
+        this.form.classList = 'well hidden';
     }.bind(this));
 }
 
 ViewNewItem.prototype = Object.create(EventTarget.prototype);
 
 ViewNewItem.prototype.createUI = function (container) {
-    var tpl = '<form class="well hidden">\
-            <label>name:<input class="form-control" name="name" type="text" autofocus></label>\
-            <label>phone:<input class="form-control" name="phone" type="number"></label>\
-            <button class="btn" type="button">add item</button>\
-        </form>';
-
-    this.el = Helpers.createEl(tpl, container, 'prepend');
-
-    return {
-        name: this.el.name,
-        phone: this.el.phone,
-        btnAdd: this.el.querySelector('button')
-    };
+    this.form = Helpers.createEl('form', container, {classList: 'well hidden'});
+    this.name = Helpers.createEl('input', this.form, {classList: 'form-control', name: 'name'});
+    this.phone = Helpers.createEl('input', this.form, {classList: 'form-control', name: 'phone'});
+    this.btnAdd = Helpers.createEl('button', this.form, {classList: 'btn', type: 'button', innerHTML: 'addItem'});
 };
 
 ViewNewItem.prototype.show = function () {
-    this.el.classList = 'well show';
+    this.form.classList = 'well show';
 };

@@ -1,53 +1,40 @@
-var ViewList = function (model, container) {
+var ViewList = function (collection, container) {
     EventTarget.call(this);
 
     // model
-    this.model = model;
-    model.addListener('itemsChanged', this.renderList.bind(this));
+    this.collection = collection;
+    collection.addListener('itemsChanged', this.renderList.bind(this));
 
     // UI
-    this.controls = this.createUI(container);
-    this.controls.btnNew.addEventListener('click', function () {
+    this.createUI(container);
+    this.btnNew.addEventListener('click', function () {
         this.fire('newItem');
     }.bind(this));
-    this.controls.btnDelete.addEventListener('click', function () {
-        this.controls.output.innerText = '';
-        this.fire('removeItem', this.controls.list.selectedIndex);
+    this.btnDelete.addEventListener('click', function () {
+        this.output.innerText = '';
+        this.fire('removeItem', this.list.selectedIndex);
     }.bind(this));
 };
 
 ViewList.prototype = Object.create(EventTarget.prototype);
 
 ViewList.prototype.createUI = function (container) {
-    var tpl = '<div class="row">\
-        <h4 class="col-lg-12">phone: <span class="output"></span></h4>\
-        <div class="col-lg-9">\
-        <select class="form-control list" size="15"></select>\
-        </div>\
-        <div class="col-lg-3">\
-        <button class="btn btn-default btn-block btn-new">+</button>\
-        <button class="btn btn-default btn-block btn-delete">-</button>\
-        </div>\
-        </div>';
-
-    var el = Helpers.createEl(tpl, container, 'append');
-
-    return {
-        list: el.querySelector('.list'),
-        btnNew: el.querySelector('.btn-new'),
-        btnDelete: el.querySelector('.btn-delete'),
-        output: el.querySelector('.output')
-    }
+    this.output = Helpers.createEl('div', container, {classList: 'col-lg-12'});
+    var listBox = Helpers.createEl('div', container, {classList: 'col-lg-9'});
+    this.list = Helpers.createEl('select', listBox, {classList: 'form-control list', size: 15});
+    var btnBox = Helpers.createEl('div', container, {classList: 'col-lg-3'});
+    this.btnNew = Helpers.createEl('button', btnBox, {classList: 'btn btn-default btn-block btn-new', innerHTML: 'add'});
+    this.btnDelete = Helpers.createEl('button', btnBox, {classList: 'btn btn-default btn-block btn-delete', innerHTML: 'delete'});
 };
 
 ViewList.prototype.renderList = function () {
-    this.controls.list.options.length = 0;
-    var items = this.model.getItems();
+    this.list.options.length = 0;
+    var items = this.collection.getItems();
     items.forEach(function (val, key) {
         var opt = new Option(val.name, key);
         opt.addEventListener('click', function () {
-            this.controls.output.innerText = val.phone;
+            this.output.innerText = val.phone;
         }.bind(this));
-        this.controls.list.options[key] = opt;
+        this.list.options[key] = opt;
     }, this);
 };

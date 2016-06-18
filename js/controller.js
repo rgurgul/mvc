@@ -1,7 +1,7 @@
-var Controller = function (model, viewList, viewNewItem) {
+var Controller = function (collection, viewList, viewNewItem) {
     viewList.addListener('newItem', viewNewItem.show.bind(viewNewItem));
-    viewNewItem.addListener('addItem', model.addItem.bind(model));
+    viewNewItem.addListener('addItem', collection.addItem.bind(collection));
     viewList.addListener('removeItem', function (index) {
-        index > -1 && model.removeItem(index);
+        index > -1 && collection.removeItem(index);
     });
 };
