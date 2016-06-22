@@ -17,7 +17,7 @@ var ViewList = function (contactCollection, container) {
         this.fire('removeItem', this.list.selectedIndex);
     }.bind(this));
     this.output.addEventListener('input', function (evt) {
-        this.fire('updateItem', [this.list.selectedIndex, evt.target.value]);
+        this.fire('updateItem', this.list.selectedIndex, evt.target.value);
     }.bind(this));
 };
 

@@ -6,7 +6,8 @@ EventTarget.prototype = {
     addListener: function (type, handler) {
         this.listeners[type] = handler;
     },
-    fire: function (type, obj) {
-        this.listeners[type](obj);
+    fire: function () {
+        var type = Array.prototype.shift.apply(arguments);
+        this.listeners[type].apply(null, arguments);
     }
 };
