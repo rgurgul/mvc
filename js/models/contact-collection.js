@@ -10,9 +10,9 @@ ContactCollection.prototype.getItems = function () {
 };
 ContactCollection.prototype.addItem = function (item) {
     this.items.push(item);
-    this.fire('itemsChanged');
+    this.fire('itemsChanged', this.items);
 };
 ContactCollection.prototype.removeItem = function (index) {
     this.items.splice(index, 1);
-    this.fire('itemsChanged');
+    this.fire('itemsChanged', this.items);
 };
