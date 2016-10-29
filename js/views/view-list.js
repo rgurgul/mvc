@@ -6,13 +6,13 @@ var ViewList = function (container) {
 ViewList.prototype = Object.create(EventTarget.prototype);
 
 ViewList.prototype.createUI = function (container) {
-    var box = Helpers.createEl('div', container, {classList: 'row'});
-    var listBox = Helpers.createEl('div', box, {classList: 'col-xs-9'});
-    this.list = Helpers.createEl('select', listBox, {classList: 'form-control list', size: 15});
-    var btnBox = Helpers.createEl('div', box, {classList: 'col-xs-3'});
-    this.output = Helpers.createEl('input', btnBox, {className: 'form-control', name: 'phone'});
-    var btnNew = Helpers.createEl('button', btnBox, {classList: 'btn btn-block btn-new', innerHTML: 'add'});
-    var btnDelete = Helpers.createEl('button', btnBox, {classList: 'btn btn-block btn-delete', innerHTML: 'delete'});
+    var box = Helpers.createEl('div', container, {class: 'row'});
+    var listBox = Helpers.createEl('div', box, {class: 'col-xs-9'});
+    this.list = Helpers.createEl('select', listBox, {class: 'form-control list', size: 15});
+    var btnBox = Helpers.createEl('div', box, {class: 'col-xs-3'});
+    this.output = Helpers.createEl('input', btnBox, {class: 'form-control', name: 'phone'});
+    var btnNew = Helpers.createEl('button', btnBox, {class: 'btn btn-block btn-new', innerHTML: 'add'});
+    var btnDelete = Helpers.createEl('button', btnBox, {class: 'btn btn-block btn-delete', innerHTML: 'delete'});
 
     // UI events
     btnNew.addEventListener('click', function () {
