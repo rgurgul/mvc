@@ -8,7 +8,7 @@ Helpers.createEl = function (tagName, target, param) {
     var el = document.createElement(tagName);
     if (param) {
         for (var key in param) {
-            el[key] = param[key];
+            el.setAttribute(key, param[key]);
         }
     }
     target instanceof HTMLElement
