@@ -7,9 +7,13 @@ function Helpers() {
 Helpers.createEl = function (tagName, target, param) {
     var el = document.createElement(tagName);
     if (param) {
-        for (var key in param) {
-            el.setAttribute(key, param[key]);
-        }
+        Object.keys(param).forEach(function (key) {
+            if (key === 'innerHTML') {
+                el.innerHTML = param[key];
+            } else {
+                el.setAttribute(key, param[key]);
+            }
+        })
     }
     target instanceof HTMLElement
         ? target.appendChild(el)
